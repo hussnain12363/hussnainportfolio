@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hussnain | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  transition: 0.5s;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.logo {
+  color: #00eaff;
+}
+
+.header nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.header nav a:hover {
+  color: #00eaff;
+}
+
+#themeBtn {
+  padding: 8px 15px;
+  border: none;
+  background: #00eaff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.hero span {
+  color: #00eaff;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background: linear-gradient(45deg, #00eaff, #9b5cff);
+  color: #000;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* Sections */
+.section {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.dark {
+  background: rgba(0,0,0,0.4);
+}
+
+/* Skills */
+.skills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.skill {
+  background: rgba(255,255,255,0.15);
+  padding: 15px 25px;
+  margin: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.skill:hover {
+  background: #00eaff;
+  color: #000;
+}
+
+/* Projects */
+.projects {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  padding: 30px;
+  width: 260px;
+  margin: 15px;
+  border-radius: 15px;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  background: linear-gradient(45deg, #00eaff, #9b5cff);
+  color: #000;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.7);
+}
+
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <h1 class="logo">Hussnain</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button id="themeBtn">Change Theme</button>
+</header>
+
+<section id="home" class="hero">
+  <h2>Hi, I'm <span>Hussnain Ali</span></h2>
+  <p id="typing"></p>
+  <button id="hireBtn">Hire Me</button>
+</section>
+
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p>
+    I build modern, responsive, and interactive websites using HTML, CSS,
+    and JavaScript with clean UI/UX.
+  </p>
+</section>
+
+<section id="skills" class="section dark">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">GitHub</div>
+    <div class="skill">UI Design</div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">Portfolio Website</div>
+    <div class="card">Landing Page</div>
+    <div class="card">JavaScript Apps</div>
+  </div>
+</section>
+
+<section id="contact" class="section dark">
+  <h2>Contact</h2>
+  <p>Email: hussnainali312024@gmail.com</p>
+  <p>Phone: 0322-3719625</p>
+</section>
+
+<footer>
+  <p>© 2025 Hussnain Ali</p>
+</footer>
+
+<script>
+/* Smooth scroll on Hire button */
+document.getElementById("hireBtn").addEventListener("click", () => {
+  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+});
+
+/* Typing Effect */
+const text = "Frontend Web Developer | UI Designer";
+let i = 0;
+
+function typingEffect() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typingEffect, 100);
+  }
+}
+typingEffect();
+
+/* Theme changer */
+let theme = 0;
+const themes = [
+  "linear-gradient(120deg,#0f2027,#203a43,#2c5364)",
+  "linear-gradient(120deg,#1e130c,#9a8478)",
+  "linear-gradient(120deg,#000428,#004e92)"
+];
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+  theme = (theme + 1) % themes.length;
+  document.body.style.background = themes[theme];
+});
+
+/* Scroll animation */
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".card").forEach(card => {
+    const position = card.getBoundingClientRect().top;
+    if (position < window.innerHeight - 100) {
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0)";
+    }
+  });
+});
+
+</script>
+</body>
+</html>
